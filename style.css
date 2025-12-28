@@ -3350,6 +3350,40 @@ body[data-aos-easing] .main-container {
         bottom: 20px;
     }
 
+    /* --- HEADER (EN ÜST ŞERİT) AYARLARI --- */
+header {
+    /* O siyah renk yerine senin Vito resmini koyuyoruz */
+    background: url('img/navbannerimg.webp');
+    background-size: cover; /* Resmi şeride yay */
+    background-position: center center; /* Resmin ortasını göster (Araba görünsün) */
+    background-repeat: no-repeat;
+    
+    /* Şeridin konumu ve düzeni */
+    position: fixed; /* Sayfa kayarken üstte sabit kalsın istersen 'fixed', kalmasın istersen 'relative' yap */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    
+    /* İçerik Hizalaması */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 3%; /* Şeridin kalınlığını buradan ayarlayabilirsin */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Altına gölge atalım ki havada dursun */
+}
+
+/* Linklerin Rengi (Resim koyu olduğu için BEYAZ yapıyoruz) */
+header .nav-menu ul li a {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Yazıların arkasına gölge */
+}
+
+/* Hamburger Menü İkonu (Mobildeki 3 çizgi) */
+.hamburger i {
+    color: #fff; 
+}
+
     
 
 }
@@ -3706,6 +3740,518 @@ a, button, input, select, textarea, i, div, span, li {
         transform: translateX(0);
     }
 }
+
+/* =========================================
+   CLEAN SHOWROOM v4.0 (SERİ & HATASIZ)
+========================================= */
+
+/* =========================================
+   MOBİL İÇİN ANİMASYON AYARLARI (768px ve altı)
+========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Statik Resmi Gizle (Artık animasyon var) */
+    .mobile-only-image { 
+        display: none !important; 
+    }
+    
+    /* 2. Sahne Alanını Mobilde Aç */
+    .clean-stage-container {
+        display: flex !important; /* Gizliliği kaldır */
+        width: 100%;
+        height: 320px; /* Mobilde yükseklik daha az olsun */
+        padding: 0; /* Kenar boşluğuna gerek yok, ortalayacağız */
+        justify-content: center; /* Kartı tam ortaya koy */
+        margin-bottom: 20px; /* Yazılarla arasına mesafe */
+    }
+
+    /* 3. Kartın Boyutunu Telefona Göre Küçült */
+    .clean-white-card {
+        width: 90% !important; /* Ekranın %90'ını kaplasın */
+        max-width: 350px; /* Çok da büyümesin */
+        height: 250px !important; /* Daha kompakt yükseklik */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Gölgeyi hafiflet */
+    }
+
+    /* 4. İçindeki Yazıları Küçült */
+    .cb-title {
+        font-size: 2.2rem !important; /* Mobilde devasa olmasın */
+    }
+    .cb-subtitle {
+        font-size: 0.6rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    /* 5. Araba ve Çizgi Konumu */
+    .clean-vito {
+        width: 85% !important; /* Arabayı karta sığdır */
+        bottom: 40px !important;
+    }
+    .floor-line {
+        left: 20px !important;
+        right: 20px !important;
+        bottom: 40px !important;
+    }
+    
+    /* 6. Düzen Ayarı (Hero Bölümü) */
+    /* Mobilde önce animasyon, sonra yazı gelsin istersen: column-reverse */
+    /* Önce yazı, sonra animasyon gelsin istersen: column */
+    .hero {
+        flex-direction: column-reverse; 
+        padding-top: 100px; /* Header payı */
+        gap: 10px;
+    }
+    
+    .hero-content {
+        min-width: 100% !important;
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+
+/* --- Masaüstü Ayarları (769px+) --- */
+@media screen and (min-width: 769px) {
+    .mobile-only-image { display: none; }
+    
+    /* 1. SAHNE ALANI */
+    .clean-stage-container {
+        display: flex;
+        justify-content: flex-start; /* Sola dayalı */
+        align-items: center;
+        width: 100%;
+        height: 450px;
+        padding-left: 5%;
+        /* ÖNEMLİ: Sahne dışına taşan her şeyi gizle */
+        overflow: hidden; 
+    }
+
+    /* 2. BEYAZ KUTU (MASKELİ) */
+    .clean-white-card {
+        position: relative;
+        width: 650px;
+        height: 380px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        /* ÖNEMLİ: Araba bu kutudan çıktığı an görünmez olur */
+        overflow: hidden; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #f0f0f0;
+        z-index: 10;
+    }
+
+    /* 3. YOL ÇİZGİSİ */
+    .floor-line {
+        position: absolute;
+        bottom: 55px;
+        left: 40px;
+        right: 40px;
+        height: 1px;
+        background: #0d4cbf;
+        z-index: 1;
+    }
+    .floor-line::after {
+        content: '';
+        position: absolute;
+        right: 0; top: -1px; width: 80px; height: 3px;
+        background: #d4af37;
+    }
+
+    /* 4. YAZI (MARKA) */
+    .clean-brand-text {
+        text-align: center;
+        z-index: 1;
+        opacity: 0;
+        /* 8 Saniyelik Hızlı Döngü */
+        animation: textFast 8s ease-in-out infinite;
+    }
+
+    .cb-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.8rem;
+        font-weight: 700;
+        color: #0f52ba;
+        line-height: 1;
+    }
+    .cb-gold { color: #d4af37; font-style: italic; }
+    
+    .cb-subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+        color: #999;
+        font-weight: 600;
+        margin-top: 10px;
+        border-top: 1px solid #d4af37;
+        padding-top: 10px;
+        display: inline-block;
+    }
+
+    /* 5. ARABA (VITO) */
+    .clean-vito {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        /* Arabanın yönü tersse buraya scaleX(-1) ekle */
+        /* transform: translateX(-50%) scaleX(-1); */
+        width: 82%;
+        height: auto;
+        z-index: 2;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+        
+        /* 8 Saniyelik Hızlı Döngü */
+        animation: carFast 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+}
+
+/* =========================================
+   HIZLI & GİZLİ GEÇİŞ ZAMANLAMASI (8 Sn)
+========================================= */
+
+@keyframes carFast {
+    /* [0s - 2.4s] BEKLEME: Araba Vitrinde */
+    0%, 30% { 
+        transform: translateX(-50%); 
+        opacity: 1; 
+    }
+    
+    /* [2.4s - 3.2s] GİDİŞ: Araba HIZLA Sola Gider (0.8 saniyede) */
+    40% { 
+        transform: translateX(-200%); /* Tamamen sola at */
+        opacity: 1; 
+    }
+    
+    /* [3.2s - 3.3s] IŞINLANMA: Görünmez ol ve Sağa Geç */
+    41% { 
+        transform: translateX(-200%); 
+        opacity: 0; /* GÖRÜNMEZ OL */
+    }
+    42% { 
+        transform: translateX(200%); /* SAĞA GEÇ (Hala görünmez) */
+        opacity: 0; 
+    }
+    
+    /* [3.3s - 6.8s] BEKLEME: Sağda gizli bekle (Yazı okunuyor) */
+    85% { 
+        transform: translateX(200%); 
+        opacity: 0; 
+    }
+    
+    /* [6.8s - 8.0s] GELİŞ: Araba Sağdan HIZLA Girer */
+    90% {
+        opacity: 1; /* Görünür ol */
+    }
+    100% { 
+        transform: translateX(-50%); /* Merkeze park et */
+        opacity: 1; 
+    }
+}
+
+@keyframes textFast {
+    /* Araba varken gizli */
+    0%, 35% { opacity: 0; transform: translateY(10px); }
+    
+    /* Araba gidince HEMEN belir */
+    45%, 80% { opacity: 1; transform: translateY(0); }
+    
+    /* Araba gelirken silin */
+    90%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* 4. ANİMASYON KUTUSU BOYUT AYARI (GÜNCELLENDİ) */
+@media screen and (min-width: 769px) {
+    .clean-white-card {
+        /* Genişliği 480'den 580'e çıkardık */
+        width: 580px !important; 
+        
+        /* Yüksekliği de orantılı artırdık */
+        height: 350px !important; 
+    }
+    
+    /* İçindeki yazıları da kutuya göre büyüttük */
+    .cb-title { 
+        font-size: 3.6rem !important; /* Yazı da büyüdü */
+    }
+    
+    /* Araba ve çizgiyi biraz daha yukarı aldık (Kutu büyüdüğü için) */
+    .clean-vito { bottom: 50px !important; } 
+    .floor-line { bottom: 50px !important; }
+}
+
+/* EKSTRA GÜVENLİK: Eğer ekran 1300px'den küçükse kutu yazılara çarpmasın diye alt alta al */
+@media screen and (max-width: 1300px) {
+    .hero {
+        flex-direction: column-reverse; /* Alt alta sırala */
+        text-align: center;
+        justify-content: center;
+        padding-top: 150px;
+    }
+
+    .hero-content {
+        min-width: 100%;
+        padding: 0 20px;
+    }
+
+    .hero-image-container {
+        max-width: 100%;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}
+
+/* =========================================
+   MOBİL ANİMASYON DÜZELTME (EKSİK PARÇA)
+========================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. KUTUNUN GİZLİLİĞİNİ KALDIR */
+    .clean-stage-container {
+        display: flex !important;
+        width: 100%;
+        height: 300px;
+        padding: 0;
+        justify-content: center;
+        overflow: hidden; /* Taşan araba görünmesin */
+    }
+
+    /* 2. KARTIN MOBİL AYARLARI */
+    .clean-white-card {
+        width: 90% !important;
+        height: 260px !important;
+        position: relative; /* İçindekiler buna göre hizalansın */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Maskeleme çalışsın */
+    }
+
+    /* 3. ARABA (VITO) - MOBİL İÇİN HAREKET KOMUTU */
+    .clean-vito {
+        position: absolute !important; /* Özgürce hareket etsin */
+        left: 50% !important;
+        bottom: 40px !important;
+        width: 85% !important;
+        z-index: 2;
+        
+        /* 🔥 İŞTE EKSİK OLAN KOMUT BURADA 🔥 */
+        /* Masaüstündeki animasyonun aynısını mobile de veriyoruz */
+        animation: carFast 8s cubic-bezier(0.65, 0, 0.35, 1) infinite !important;
+    }
+
+    /* 4. YAZI - MOBİL İÇİN HAREKET KOMUTU */
+    .clean-brand-text {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        
+        /* 🔥 EKSİK KOMUT 🔥 */
+        animation: textFast 8s ease-in-out infinite !important;
+    }
+
+    /* Yazı boyutlarını düzeltme */
+    .cb-title { font-size: 2.5rem !important; }
+    .cb-subtitle { font-size: 0.7rem !important; }
+    .cb-line { margin: 10px auto !important; }
+
+    /* 5. YOL ÇİZGİSİ */
+    .floor-line {
+        position: absolute !important;
+        left: 20px !important;
+        right: 20px !important;
+        bottom: 40px !important;
+    }
+
+    /* 6. ESKİ RESMİ GİZLE */
+    .mobile-only-image { display: none !important; }
+}
+
+/* =========================================
+   SAFİR VIP ANIMASYON (GLOBAL AYARLAR)
+   Hem Mobil Hem Masaüstü İçin Ortak Tasarım
+========================================= */
+
+/* 1. KUTU TASARIMI (Ortak) */
+.clean-white-card {
+    position: relative;
+    background-color: #ffffff !important; /* KESİN BEYAZ */
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Ortak Gölge */
+    border: 1px solid #f0f0f0;
+    overflow: hidden; /* Maskeleme */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* 2. YAZI TİPLERİ (Ortak) */
+.clean-brand-text {
+    text-align: center;
+    z-index: 1;
+    opacity: 0;
+    animation: textFast 8s ease-in-out infinite; /* Ortak Animasyon */
+}
+
+.cb-title {
+    font-family: 'Playfair Display', serif !important; /* Font Garantisi */
+    font-weight: 700;
+    color: #0f52ba;
+    line-height: 1;
+}
+
+.cb-gold { color: #d4af37; font-style: italic; }
+
+.cb-subtitle {
+    font-family: 'Poppins', sans-serif !important;
+    letter-spacing: 4px;
+    color: #999;
+    font-weight: 600;
+    margin-top: 10px;
+    border-top: 1px solid #d4af37;
+    padding-top: 10px;
+    display: inline-block;
+}
+
+/* 3. ARABA AYARLARI (Ortak) */
+.clean-vito {
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    /* Animasyonu burada tanımlıyoruz, her yerde çalışsın */
+    animation: carFast 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* 4. YOL ÇİZGİSİ (Ortak) */
+.floor-line {
+    position: absolute;
+    height: 1px;
+    background: #e5e5e5;
+    z-index: 1;
+}
+.floor-line::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -1px; width: 60px; height: 3px;
+    background: #d4af37;
+}
+
+/* =========================================
+   CİHAZA ÖZEL BOYUTLANDIRMA
+========================================= */
+
+/* --- MASAÜSTÜ (Geniş Ekran) --- */
+@media screen and (min-width: 769px) {
+    .mobile-only-image { display: none; } /* Eski resmi gizle */
+    
+    .clean-stage-container {
+        display: flex;
+        justify-content: flex-end; /* Sağa yasla */
+        padding-right: 5%;
+        width: 100%;
+        height: 450px;
+    }
+
+    .clean-white-card {
+        width: 580px;  /* Masaüstü Genişliği */
+        height: 350px; /* Masaüstü Yüksekliği */
+    }
+
+    .cb-title { font-size: 3.6rem; }
+    .cb-subtitle { font-size: 0.8rem; }
+    
+    .clean-vito { 
+        width: 82%; 
+        bottom: 50px; 
+        transform: translateX(-50%); /* Başlangıç konumu */
+    }
+    .floor-line { bottom: 50px; left: 40px; right: 40px; }
+}
+
+/* --- MOBİL (Telefon) --- */
+@media screen and (max-width: 768px) {
+    .mobile-only-image { display: none !important; } /* Eski resmi kesin gizle */
+
+    /* Hero Bölümü Düzeni */
+    .hero {
+        flex-direction: column-reverse; /* Animasyon üstte, yazı altta */
+        padding-top: 100px;
+        gap: 20px;
+    }
+    
+    /* Sol taraf (Yazılar) ayarı */
+    .hero-content {
+        min-width: 100%;
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    .hero-buttons { justify-content: center; }
+
+    /* Animasyon Sahnesi */
+    .clean-stage-container {
+        display: flex !important;
+        width: 100%;
+        height: 280px; /* Mobilde daha kısa sahne */
+        justify-content: center; /* Ortala */
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    /* KARTIN MOBİL BOYUTU */
+    .clean-white-card {
+        width: 90% !important; /* Ekranın %90'ı */
+        max-width: 380px;
+        height: 240px !important; /* Mobil yüksekliği */
+    }
+
+    /* Yazıları Küçült */
+    .cb-title { font-size: 2.2rem !important; }
+    .cb-subtitle { font-size: 0.6rem !important; letter-spacing: 2px !important; }
+
+    /* Araba Konumu */
+    .clean-vito { 
+        width: 85% !important; 
+        bottom: 35px !important;
+        /* Mobilde animasyonun çalışması için transform şart */
+        transform: translateX(-50%); 
+    }
+    .floor-line { bottom: 35px !important; left: 20px !important; right: 20px !important; }
+}
+
+/* =========================================
+   ANIMASYON KEYFRAMES (Ortak)
+========================================= */
+
+@keyframes carFast {
+    0%, 30% { transform: translateX(-50%); opacity: 1; }
+    40% { transform: translateX(-200%); opacity: 1; }
+    41% { transform: translateX(-200%); opacity: 0; }
+    42% { transform: translateX(200%); opacity: 0; }
+    85% { transform: translateX(200%); opacity: 0; }
+    90% { opacity: 1; }
+    100% { transform: translateX(-50%); opacity: 1; }
+}
+
+@keyframes textFast {
+    0%, 35% { opacity: 0; transform: translateY(10px); }
+    45%, 80% { opacity: 1; transform: translateY(0); }
+    90%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+
+
+
+
+
+
 
 
 
